@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil Klub Liga 1 Indonesia 2025/2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #d0f0c0 0%, #f7faf7 100%);
+      color: #222;
+      line-height: 1.6;
+      font-size: 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-attachment: fixed;
+    }
+
+    header, footer {
+      background: linear-gradient(90deg, #006400, #009933);
+      color: #f0f8f0;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 100, 0, 0.35);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      user-select: none;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.75rem;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      font-weight: 700;
+    }
+
+    nav {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    nav a {
+      color: #d9f7d9;
+      padding: 10px 20px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      background: rgba(0, 100, 0, 0.25);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 0 5px rgba(0, 100, 0, 0.15);
+      user-select: none;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background-color: #a8e0a2;
+      color: #004d00;
+      box-shadow: 0 0 12px #7bd77b;
+      transform: scale(1.05);
+    }
+
+    main.container {
+      flex: 1;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 30px 40px;
+      background-color: #ffffffcc;
+      box-shadow: 0 12px 45px rgba(0, 0, 0, 0.07);
+      border-radius: 20px;
+      transition: box-shadow 0.3s ease;
+      backdrop-filter: saturate(180%) blur(10px);
+      min-height: 60vh;
+    }
+
+    main.container:hover {
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .page-section {
+      display: none;
+      animation: fadeIn 0.7s ease forwards;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .club-profile {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      border-bottom: 4px solid #7cd67c;
+      padding-bottom: 30px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .club-profile img {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      object-fit: contain;
+      box-shadow: 0 10px 20px rgba(0, 140, 0, 0.25);
+      transition: transform 0.3s ease;
+      background-color: #fff;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .club-profile img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 30px rgba(0, 170, 0, 0.4);
+    }
+
+    .club-info {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .club-info h2 {
+      margin-top: 0;
+      font-size: 2.4rem;
+      color: #006400;
+      letter-spacing: 1.1px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .club-info p.description {
+      font-size: 1.15rem;
+      color: #2a2a2a;
+    }
+
+    .club-details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      margin-top: 30px;
+    }
+
+    .detail-box {
+      background: #e9f6ea;
+      border-radius: 15px;
+      padding: 20px 25px;
+      box-shadow: 0 6px 18px rgba(0, 140, 0, 0.12);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .detail-box:hover {
+      box-shadow: 0 10px 28px rgba(0, 170, 0, 0.22);
+    }
+
+    .detail-box h3 {
+      margin-top: 0;
+      font-size: 1.25rem;
+      color: #145214;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-left: 5px solid #34a034;
+      padding-left: 12px;
+    }
+
+    .detail-box ul {
+      margin: 0;
+      padding-left: 18px;
+      list-style-type: disc;
+      color: #2b2b2b;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .detail-box ul li {
+      margin-bottom: 8px;
+    }
+
+    .stats, .schedule, .news {
+      margin-top: 40px;
+    }
+
+    .stats h2, .schedule h2, .news h2, .page-section h2 {
+      border-left: 6px solid #009933;
+      padding-left: 18px;
+      color: #007300;
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      user-select: none;
+      text-shadow: 0 1px 0 #cdf6cd;
+    }
+
+    .schedule ul, .news ul {
+      padding-left: 25px;
+    }
+
+    .schedule li, .news li {
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      color: #323232;
+    }
+
+    .schedule li strong {
+      color: #007300;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 15px;
+      box-shadow: 0 8px 30px rgba(0, 150, 0, 0.15);
+      border-radius: 14px;
+    }
+
+    .league-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 15px;
+      user-select: none;
+    }
+
+    .league-table th,
+    .league-table td {
+      border: 1px solid #a9d7a8;
+      padding: 10px 12px;
+      font-weight: 600;
+      vertical-align: middle;
+      background-color: #f9fff9;
+      transition: background-color 0.4s;
+    }
+
+    .league-table th {
+      background-color: #007a00;
+      color: white;
+      letter-spacing: 0.05em;
+    }
+
+    .league-table tr:nth-child(even) td {
+      background-color: #e8f4e8;
+    }
+
+    .league-table tr:hover td {
+      background-color: #c4e6c4;
+      cursor: default;
+    }
+
+    .league-table .highlight {
+      font-weight: 700;
+      color: #1a4d00;
+      background-color: #dcf7dc;
+      border-color: #4bbb4b;
+    }
+
+    .news a {
+      text-decoration: none;
+      color: #248024;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .news a:hover {
+      text-decoration: underline;
+      color: #004d00;
+    }
+
+    .club-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+      user-select: none;
+    }
+
+    .club-list a {
+      background: linear-gradient(135deg, #b6f1b6, #84d784);
+      color: #004400;
+      padding: 18px 22px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: 2px solid #007300;
+      border-radius: 16px;
+      box-shadow: 0 7px 15px rgba(0, 140, 0, 0.17);
+      transition: background-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+
+    .club-list a:hover, .club-list a:focus {
+      background: linear-gradient(135deg, #95f195, #57b257);
+      transform: scale(1.06);
+      box-shadow: 0 12px 22px rgba(0, 150, 0, 0.35);
+      color: #002200;
+      cursor: pointer;
+      outline: none;
+    }
+
+    footer {
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1);
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .club-profile {
+        flex-direction: column;
+        align-items: center;
+      }
+      .club-profile img {
+        margin-bottom: 20px;
+        width: 140px;
+        height: 140px;
+      }
+      main.container {
+        padding: 25px 20px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Liga Indonesia Baru</h1>
+  <nav role="navigation" aria-label="Main site navigation">
+    <a href="#" onclick="showSection('beranda', this)" class="active" aria-current="page">Beranda</a>
+    <a href="#" onclick="showSection('kompetisi', this)">Kompetisi</a>
+    <a href="#" onclick="showSection('jadwal', this)">Jadwal</a>
+    <a href="#" onclick="showSection('klasemen', this)">Klasemen</a>
+    <a href="#" onclick="showSection('klub', this)">Klub</a>
+    <a href="#" onclick="showSection('media', this)">Media</a>
+  </nav>
+</header>
+
+<main class="container" role="main">
+<section id="beranda" class="page-section active" tabindex="0" aria-label="Beranda">
+    <h2>Selamat datang di Liga Indonesia Baru</h2>
+    <p>Pilih klub dari tab "Klub" untuk melihat detail lengkap tiap tim Liga 1 Indonesia musim 2024/2025.</p>
+    <p>Website ini hadir sebagai pusat informasi terkini seputar kompetisi, jadwal, klasemen, dan berita terbaru.</p>
+
+<div class="match-gallery">
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Arema-FC-vs-Persik-Kediri-1746957296.JPG" alt="Arema FC vs Persik Kediri">
+        <p>Arema FC vs Persik Kediri</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Persija-Jakarta-vs-Semen-Padang-FC-1745900683.JPG" alt="Persija Jakarta vs Semen Padang FC">
+        <p>Persija Jakarta vs Semen Padang FC</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Dewa-United-FC-vs-Persita-Tangerang-1746784483.JPG" alt="Dewa United FC vs Persita Tangerang">
+        <p>Dewa United FC vs Persita Tangerang</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Dewa-United-FC-vs-Malut-United-FC-1745900310.JPG" alt="Dewa United FC vs Malut United FC">
+        <p>Dewa United FC vs Malut United FC</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/PSIS-Semarang-vs-PSS-Sleman-1746784143.JPG" alt="PSIS Semarang vs PSS Sleman">
+        <p>PSIS Semarang vs PSS Sleman</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Persib-Bandung-vs-PSS-Sleman-1745900067.JPG" alt="Persib Bandung vs PSS Sleman">
+        <p>Persib Bandung vs PSS Sleman</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Persik-Kediri-vs-Persija-Jakarta-1745077186.JPG" alt="Persik Kediri vs Persija Jakarta">
+        <p>Persik Kediri vs Persija Jakarta</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/PS-Barito-Putera-vs-Persis-Solo-1745076989.JPG" alt="PS Barito Putera vs Persis Solo">
+        <p>PS Barito Putera vs Persis Solo</p>
+    </div>
+    <div class="match-item">
+        <img src="https://assets.ligaindonesiabaru.com/uploads/images/photo/Persib-Bandung-vs-Bali-United-FC-1745076759.jpg" alt="Persib Bandung vs Bali United FC">
+        <p>Persib Bandung vs Bali United FC</p>
+    </div>
+</div>
+
+<style>
+    .match-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+    }
+    .match-item {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+    }
+    .match-item img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+</section>
+  <section id="kompetisi" class="page-section" tabindex="0" aria-label="Kompetisi">
+    <h2>Kompetisi yang Diikuti</h2>
+    <p>Pilih klub untuk melihat daftar kompetisi yang mereka ikuti pada musim ini.</p>
+  </section>
+
+  <section id="jadwal" class="page-section" tabindex="0" aria-label="Jadwal Pertandingan">
+    <h2>Jadwal Pertandingan Mendatang</h2>
+    <ul id="schedule" aria-live="polite" aria-atomic="true" style="min-height: 100px;">
+      <!-- Schedule will be injected dynamically -->
+    </ul>
+  </section>
+
+  <section id="klasemen" class="page-section" tabindex="0" aria-label="Klasemen BRI Liga 1">
+    <h2>Klasemen BRI Liga 1 2025/2026</h2>
+    <div class="table-container" id="league-table">
+      <table class="league-table" role="table" aria-describedby="description-league-table">
+        <caption id="description-league-table" class="sr-only">Klasemen Liga 1 Indonesia musim 2025/2026</caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tim</th>
+            <th scope="col">P</th>
+            <th scope="col">W</th>
+            <th scope="col">D</th>
+            <th scope="col">L</th>
+            <th scope="col">GF</th>
+            <th scope="col">GA</th>
+            <th scope="col">GD</th>
+            <th scope="col">PTS</th>
+          </tr>
+        </thead>
+        <tbody id="league-standings">
+          <!-- Table rows injected -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="media" class="page-section" tabindex="0" aria-label="Media & Berita">
+    <h2>Berita Terbaru</h2>
+    <ul id="news" aria-live="polite" aria-atomic="true" style="min-height: 100px;">
+      <!-- News content injected -->
+    </ul>
+  </section>
+
+  <section id="klub" class="page-section" tabindex="0" aria-label="Daftar Klub Liga 1">
+    <h2>Daftar Klub Liga 1 Indonesia 2025/2026</h2>
+    <div class="club-list" role="list" aria-label="Daftar nama klub Liga 1">
+      <a href="#" role="listitem" onclick="showClubDetails('Arema FC')" tabindex="0">1. Arema FC</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Bali United')" tabindex="0">2. Bali United</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Bhayangkara Presisi')" tabindex="0">3. Bhayangkara Presisi</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Borneo FC')" tabindex="0">4. Borneo FC</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Dewa United')" tabindex="0">5. Dewa United</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Madura United')" tabindex="0">6. Madura United</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Malut United')" tabindex="0">7. Malut United</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persebaya Surabaya')" tabindex="0">8. Persebaya Surabaya</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persib Bandung')" tabindex="0">9. Persib Bandung</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persija Jakarta')" tabindex="0">10. Persija Jakarta</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persijap Jepara')" tabindex="0">11. Persijap Jepara</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persik Kediri')" tabindex="0">12. Persik Kediri</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persis Solo')" tabindex="0">13. Persis Solo</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Persita Tangerang')" tabindex="0">14. Persita Tangerang</a>
+      <a href="#" role="listitem" onclick="showClubDetails('PSBS Biak Numfor')" tabindex="0">15. PSBS Biak Numfor</a>
+      <a href="#" role="listitem" onclick="showClubDetails('PSIM Yogyakarta')" tabindex="0">16. PSIM Yogyakarta</a>
+      <a href="#" role="listitem" onclick="showClubDetails('PSM Makassar')" tabindex="0">17. PSM Makassar</a>
+      <a href="#" role="listitem" onclick="showClubDetails('Semen Padang')" tabindex="0">18. Semen Padang</a>
+    </div>
+
+    <article id="club-details" class="club-details" aria-live="polite" aria-atomic="true" tabindex="0" hidden>
+      <!-- Club details dynamically displayed here -->
+    </article>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2025 Liga Indonesia Baru. All rights reserved.</p>
+</footer>
+<script>
+  // Data: clubs with detailed info
+  const clubs = {
+    "Arema FC": {
+      logo: "https://logotyp.us/file/arema.svg",
+      description: "Arema FC berdiri sejak 1987 dan dikenal dengan julukan Singo Edan. Klub berprestasi dengan banyak gelar dan basis fanatik.",
+      history: [
+        "Dibentuk pada 1987.",
+        "Juara Liga Indonesia 2009–2010.",
+        "Pendukung fanatik 'Aremania'."
+      ],
+      keyPlayers: ["Hamka Hamzah", "Carlos Fortes", "Jacob Silva"],
+      achievements: ["Juara Liga Indonesia 2009–10", "Juara Piala Presiden 2017", "Juara Piala Gubernur Jatim 2023"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia", "Turnamen Persahabatan"],
+      nextMatches: [
+        { date: "2024-09-18", opponent: "Persib Bandung", venue: "Kandang" },
+        { date: "2024-09-24", opponent: "Bali United", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Arema FC Kuat di Liga 1 Musim Ini", url: "#", date: "2024-06-01" },
+        { title: "Persiapan Matang Sambut Musim Baru", url: "#", date: "2024-05-21" }
+      ]
+    },
+    "Bali United": {
+      logo: "https://logotyp.us/file/bali-united.svg",
+      description: "Bali United dikenal dengan energi dan semangat tinggi. Klub juara Liga 1 musim 2019 dan basis kuat di Pulau Dewata.",
+      history: [
+        "Dibentuk tahun 2015 dari penggabungan dua klub.",
+        "Juara Liga 1 2019.",
+        "Pendukung dikenal sebagai 'Semeton Dewata'."
+      ],
+      keyPlayers: ["Stefano Lilipaly", "Ilija Spasojevic", "Fadil Sausu"],
+      achievements: ["Juara Liga 1 2019", "Juara Piala Presiden 2018", "Runner-up Piala AFC 2020"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia", "Piala AFC"],
+      nextMatches: [
+        { date: "2024-09-15", opponent: "Persebaya Surabaya", venue: "Kandang" },
+        { date: "2024-09-28", opponent: "Persija Jakarta", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Bali United Siapkan Tim Kuat untuk Kompetisi Asia", url: "#", date: "2024-06-10" },
+        { title: "Taktik Baru untuk Musim 2024", url: "#", date: "2024-05-30" }
+      ]
+    },
+    "Bhayangkara Presisi": {
+      logo: "https://logotyp.us/file/bhayangkara.svg",
+      description: "Bhayangkara Presisi FC adalah klub yang didirikan oleh kepolisian Indonesia, dikenal dengan semangat juang yang tinggi.",
+      history: [
+        "Dibentuk pada tahun 2010.",
+        "Juara Liga 1 2017.",
+        "Pendukung dikenal sebagai 'Bhayangkara Mania'."
+      ],
+      keyPlayers: ["Egy Maulana Vikri", "Sandy Walsh", "Rafael Silva"],
+      achievements: ["Juara Liga 1 2017", "Juara Piala Presiden 2018"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-19", opponent: "Persita Tangerang", venue: "Kandang" },
+        { date: "2024-09-29", opponent: "PSM Makassar", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Bhayangkara Presisi Siap Hadapi Musim Baru", url: "#", date: "2024-06-12" },
+        { title: "Strategi Baru Pelatih Jelang Liga 1", url: "#", date: "2024-05-28" }
+      ]
+    },
+    "Borneo FC": {
+      logo: "https://logotyp.us/file/borneo.svg",
+      description: "Borneo FC klub yang berkembang pesat dengan ambisi besar dan sejarah singkat yang menjanjikan.",
+      history: [
+        "Dibentuk 2014.",
+        "Menjadi finalis Piala Presiden 2017.",
+        "Dikenal dengan gaya bermain agresif."
+      ],
+      keyPlayers: ["Loris Arnaud", "Andik Vermansyah", "Ronald Fagundez"],
+      achievements: ["Runner-up Piala Presiden 2017", "Semifinal Liga 1 2019"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-17", opponent: "Persib Bandung", venue: "Tandang" },
+        { date: "2024-09-25", opponent: "Arema FC", venue: "Kandang" }
+      ],
+      news: [
+        { title: "Borneo FC Siap Bersaing di Liga 1", url: "#", date: "2024-06-03" },
+        { title: "Peningkatan Kualitas Tim Terus Dilakukan", url: "#", date: "2024-05-23" }
+      ]
+    },
+    "Dewa United": {
+      logo: "https://example.com/dewa-united-logo.png", // Replace with actual logo URL
+      description: "Dewa United adalah klub yang baru muncul dengan ambisi untuk menjadi salah satu yang terbaik di Indonesia.",
+      history: [
+        "Dibentuk pada tahun 2020.",
+        "Berpartisipasi di Liga 1 sejak 2021.",
+        "Pendukung dikenal sebagai 'Dewa Mania'."
+      ],
+      keyPlayers: ["Egy Maulana", "Ricky Kambuaya", "Alex Martins"],
+      achievements: ["Juara Liga 2 2020"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-20", opponent: "PSM Makassar", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Persija Jakarta", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Dewa United Siap Menyongsong Liga 1", url: "#", date: "2024-06-15" },
+        { title: "Pemain Baru Dewa United Siap Tampil", url: "#", date: "2024-05-25" }
+      ]
+    },
+    "Madura United": {
+      logo: "https://example.com/madura-united-logo.png", // Replace with actual logo URL
+      description: "Madura United adalah klub yang berbasis di Madura, dikenal dengan dukungan fanatik dari suporter.",
+      history: [
+        "Dibentuk pada tahun 2016.",
+        "Juara Piala Presiden 2020.",
+        "Pendukung dikenal sebagai 'Laskar Sape Kerrap'."
+      ],
+      keyPlayers: ["Bambang Pamungkas", "Fabiano Beltrame", "Rafael Silva"],
+      achievements: ["Juara Piala Presiden 2020"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-22", opponent: "Persib Bandung", venue: "Kandang" },
+        { date: "2024-09-29", opponent: "Arema FC", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Madura United Siap Hadapi Liga 1", url: "#", date: "2024-06-10" },
+        { title: "Pelatih Baru Siap Bawa Perubahan", url: "#", date: "2024-05-30" }
+      ]
+    },
+    "Malut United": {
+      logo: "https://example.com/malut-united-logo.png", // Replace with actual logo URL
+      description: "Malut United adalah klub yang berbasis di Maluku Utara, berambisi untuk bersaing di Liga 1.",
+      history: [
+        "Dibentuk pada tahun 2018.",
+        "Berpartisipasi di Liga 1 sejak 2021.",
+        "Pendukung dikenal sebagai 'Malut Mania'."
+      ],
+      keyPlayers: ["Rizky Pora", "Rudi Widodo", "Rizal Fahmi"],
+      achievements: ["Juara Liga 2 2019"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-18", opponent: "Borneo FC", venue: "Kandang" },
+        { date: "2024-09-26", opponent: "PSM Makassar", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Malut United Siap Tampil di Liga 1", url: "#", date: "2024-06-05" },
+        { title: "Pemain Baru Malut United Dikenalkan", url: "#", date: "2024-05-20" }
+      ]
+    },
+    "Persebaya Surabaya": {
+      logo: "https://logotyp.us/file/persebaya.svg",
+      description: "Persebaya Surabaya dikenal dengan julukan Bajul Ijo, klub penuh sejarah dengan basis suporter yang besar.",
+      history: [
+        "Berdiri tahun 1927.",
+        "Juara Liga Indonesia 2017.",
+        "Didukung oleh Bonek, pendukung fanatik."
+      ],
+      keyPlayers: ["Bruno Moreira", "Ernando Ari", "Malik Risaldi"],
+      achievements: ["Juara Liga 1 2017", "Juara Piala Gubernur Jatim 2024", "Juara Piala Presiden 2019"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia", "Turnamen Nasional"],
+      nextMatches: [
+        { date: "2024-09-16", opponent: "Bali United", venue: "Tandang" },
+        { date: "2024-09-26", opponent: "PSM Makassar", venue: "Kandang" }
+      ],
+      news: [
+        { title: "Persebaya Optimis di Musim Baru", url: "#", date: "2024-06-02" },
+        { title: "Bonek Siap Ramaikan Stadion", url: "#", date: "2024-05-22" }
+      ]
+    },
+    "Persib Bandung": {
+      logo: "https://logotyp.us/file/persib.svg",
+      description: "Persib Bandung adalah klub besar dari Jawa Barat dengan sejarah panjang dan fanbase loyal yang sangat besar.",
+      history: [
+        "Didirikan tahun 1933.",
+        "Juara Liga Indonesia 2014.",
+        "Fans dikenal sebagai 'Bobotoh'."
+      ],
+      keyPlayers: ["Vladimir Vujovic", "Febri Hariyadi", "David Da Silva"],
+      achievements: ["Juara Liga Indonesia 2014", "Juara Piala Presiden 2015", "Juara Piala Indonesia 2020"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia", "Turnamen Persahabatan"],
+      nextMatches: [
+        { date: "2024-09-17", opponent: "Borneo FC", venue: "Kandang" },
+        { date: "2024-09-27", opponent: "Dewa United", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Persib Persiapkan Tim Terbaik untuk Musim 2024", url: "#", date: "2024-06-08" },
+        { title: "Bobotoh Siap Dukung Penuh di Stadion", url: "#", date: "2024-05-29" }
+      ]
+    },
+    "Persija Jakarta": {
+      logo: "https://logotyp.us/file/persija.svg",
+      description: "Persija Jakarta, klub tertua dan punya sejarah kaya, dengan basis pendukung besar di ibu kota.",
+      history: [
+        "Didirikan pada tahun 1928.",
+        "Juara Liga Indonesia dan liga domestik lainnya beberapa kali.",
+        "Pendukung dikenal sebagai 'Jakmania'."
+      ],
+      keyPlayers: ["Rizki Ridho", "Gustavo Almeida", "Andritany"],
+      achievements: ["Juara Liga Indonesia 2018", "Juara Piala Presiden 2018", "Juara Piala Indonesia 2018"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia", "Turnamen Persahabatan"],
+      nextMatches: [
+        { date: "2024-09-20", opponent: "PSM Makassar", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Arema FC", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Persija Siap Tempur di Liga 1 Musim Ini", url: "#", date: "2024-06-05" },
+        { title: "Strategi Baru Pelatih Jelang Musim", url: "#", date: "2024-05-25" }
+      ]
+    },
+    "Persijap Jepara": {
+      logo: "https://example.com/persijap-logo.png", // Replace with actual logo URL
+      description: "Persijap Jepara adalah klub yang berbasis di Jepara, dikenal dengan sejarah panjang dan dukungan setia dari suporter.",
+      history: [
+        "Didirikan pada tahun 1950.",
+        "Pernah berkompetisi di Liga 1 dan Liga 2.",
+        "Pendukung dikenal sebagai 'Laskar Kalinyamat'."
+      ],
+      keyPlayers: ["Rizky Ridho", "Dimas Drajad", "Ferry Aman Saragih"],
+      achievements: ["Juara Liga 2 2019"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-21", opponent: "Bhayangkara Presisi", venue: "Kandang" },
+        { date: "2024-09-29", opponent: "Madura United", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Persijap Jepara Siap Hadapi Liga 1", url: "#", date: "2024-06-01" },
+        { title: "Pemain Baru Dikenalkan ke Publik", url: "#", date: "2024-05-15" }
+      ]
+    },
+    "Persik Kediri": {
+      logo: "https://logotyp.us/file/persik.svg", 
+      description: "Persik Kediri adalah klub yang berbasis di Kediri, dengan sejarah yang kaya dan dukungan fanatik.",
+      history: [
+        "Didirikan pada tahun 1950.",
+        "Juara Liga Indonesia 2006.",
+        "Pendukung dikenal sebagai 'Persik Mania'."
+      ],
+      keyPlayers: ["Gonzales", "Dendi Sulistyawan", "Rizky Pora"],
+      achievements: ["Juara Liga Indonesia 2006"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-22", opponent: "Borneo FC", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "PSM Makassar", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Persik Kediri Siap Tampil di Liga 1", url: "#", date: "2024-06-10" },
+        { title: "Pelatih Baru Dikenalkan", url: "#", date: "2024-05-20" }
+      ]
+    },
+    "Persis Solo": {
+      logo: "https://example.com/persis-logo.png", // Replace with actual logo URL
+      description: "Persis Solo adalah klub yang berbasis di Solo, dikenal dengan sejarah panjang dan dukungan setia dari suporter.",
+      history: [
+        "Didirikan pada tahun 1923.",
+        "Pernah berkompetisi di Liga 1 dan Liga 2.",
+        "Pendukung dikenal sebagai 'Laskar Sambernyawa'."
+      ],
+      keyPlayers: ["Egy Maulana Vikri", "Ferdinand Sinaga", "Rendy Oscario"],
+      achievements: ["Juara Liga 2 2020"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-23", opponent: "Persib Bandung", venue: "Kandang" },
+        { date: "2024-09-29", opponent: "Arema FC", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Persis Solo Siap Hadapi Liga 1", url: "#", date: "2024-06-12" },
+        { title: "Pemain Baru Dikenalkan", url: "#", date: "2024-05-25" }
+      ]
+    },
+    "Persita Tangerang": {
+      logo: "https://logotyp.us/file/persita.svg",
+      description: "Persita Tangerang adalah klub yang berbasis di Tangerang, dikenal dengan dukungan fanatik dari suporter.",
+      history: [
+        "Didirikan pada tahun 1950.",
+        "Pernah berkompetisi di Liga 1 dan Liga 2.",
+        "Pendukung dikenal sebagai 'Pendekar Cisadane'."
+      ],
+      keyPlayers: ["Rafael Silva", "Ferdinand Sinaga", "Rizky Pora"],
+      achievements: ["Juara Liga 2 2020"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-24", opponent: "PSM Makassar", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Bhayangkara Presisi", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Persita Tangerang Siap Tampil di Liga 1", url: "#", date: "2024-06-15" },
+        { title: "Pemain Baru Dikenalkan", url: "#", date: "2024-05-28" }
+      ]
+    },
+    "PSBS Biak Numfor": {
+      logo: "https://example.com/psbs-logo.png", // Replace with actual logo URL
+      description: "PSBS Biak Numfor adalah klub yang berbasis di Papua, dengan dukungan setia dari suporter lokal.",
+      history: [
+        "Didirikan pada tahun 1970.",
+        "Berpartisipasi di Liga 2 dan Liga 1.",
+        "Pendukung dikenal sebagai 'Biak Mania'."
+      ],
+      keyPlayers: ["Yusuf Lestaluhu", "Rizky Pora", "Rudi Widodo"],
+      achievements: ["Juara Liga 2 2018"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-25", opponent: "Persib Bandung", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Madura United", venue: "Tandang" }
+      ],
+      news: [
+        { title: "PSBS Biak Numfor Siap Hadapi Liga 1", url: "#", date: "2024-06-20" },
+        { title: "Pemain Baru Dikenalkan", url: "#", date: "2024-05-30" }
+      ]
+    },
+    "PSIM Yogyakarta": {
+      logo: "https://example.com/psim-logo.png", // Replace with actual logo URL
+      description: "PSIM Yogyakarta adalah klub yang berbasis di Yogyakarta, dikenal dengan sejarah panjang dan dukungan fanatik.",
+      history: [
+        "Didirikan pada tahun 1929.",
+        "Pernah berkompetisi di Liga 1 dan Liga 2.",
+        "Pendukung dikenal sebagai 'Laskar Mataram'."
+      ],
+      keyPlayers: ["Egy Maulana Vikri", "Rendy Oscario", "Ferdinand Sinaga"],
+      achievements: ["Juara Liga 2 2019"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-26", opponent: "Persija Jakarta", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Borneo FC", venue: "Tandang" }
+      ],
+      news: [
+        { title: "PSIM Yogyakarta Siap Tampil di Liga 1", url: "#", date: "2024-06-25" },
+        { title: "Pemain Baru Dikenalkan", url: "#", date: "2024-05-22" }
+      ]
+    },
+    "PSM Makassar": {
+      logo: "https://logotyp.us/file/psm.svg",
+      description: "PSM Makassar adalah klub yang berbasis di Makassar, dengan sejarah panjang dan dukungan fanatik.",
+      history: [
+        "Didirikan pada tahun 1915.",
+        "Juara Liga Indonesia 2000.",
+        "Pendukung dikenal sebagai 'Laskar Ayam Jantan'."
+      ],
+      keyPlayers: ["Wiljan Pluim", "Rizky Pora", "Evan Dimas"],
+      achievements: ["Juara Liga Indonesia 2000", "Juara Piala Indonesia 2019"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-27", opponent: "Persib Bandung", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Arema FC", venue: "Tandang" }
+      ],
+      news: [
+        { title: "PSM Makassar Siap Hadapi Liga 1", url: "#", date: "2024-06-30" },
+        { title: "Pemain Baru Dikenalkan", url: "#", date: "2024-05-25" }
+      ]
+    },
+    "Semen Padang": {
+      logo: "https://logotyp.us/file/semen-padang.svg",
+      description: "Semen Padang adalah klub yang berbasis di Padang, dikenal dengan sejarah panjang dan dukungan fanatik.",
+      history: [
+        "Didirikan pada tahun 1980.",
+        "Juara Liga Indonesia 1997.",
+        "Pendukung dikenal sebagai 'Semen Padang Fans'."
+      ],
+      keyPlayers: ["Rudy Eka Priyambada", "Rizky Pora", "Ferdinand Sinaga"],
+      achievements: ["Juara Liga Indonesia 1997"],
+      competitions: ["Liga 1 Indonesia", "Piala Indonesia"],
+      nextMatches: [
+        { date: "2024-09-28", opponent: "Persija Jakarta", venue: "Kandang" },
+        { date: "2024-09-30", opponent: "Borneo FC", venue: "Tandang" }
+      ],
+      news: [
+        { title: "Semen Padang Siap Tampil di Liga 1", url: "#", date: "2024-07-01" },
+        { title: "Pemain Baru Dikenalkan", url: "#", date: "2024-05-20" }
+      ]
+    }
+  };
+
+  // Sample schedule (can be made dynamic or extended)
+  const generalSchedule = [
+    { date: "2024-09-15", home: "Bali United", away: "Persebaya Surabaya", venue: "Stadion Kapten I Wayan Dipta" },
+    { date: "2024-09-16", home: "Persija Jakarta", away: "PSM Makassar", venue: "Stadion Gelora Bung Karno" },
+    { date: "2024-09-17", home: "Borneo FC", away: "Persib Bandung", venue: "Segiri Stadium" },
+    { date: "2024-09-18", home: "Arema FC", away: "Persib Bandung", venue: "Kanjuruhan Stadium" },
+    { date: "2024-09-20", home: "Persija Jakarta", away: "Arema FC", venue: "Stadion Gelora Bung Karno" },
+  ];
+
+  // Sample news data (can be expanded)
+  const leagueNews = [
+    { title: "Liga 1 Musim 2024/25 Dimulai dengan Semangat Baru", url: "#", date: "2024-06-01" },
+    { title: "Update Transfer Pemain Top Liga 1", url: "#", date: "2024-06-10" },
+    { title: "Interaksi Fans dan Klub Meningkat Melalui Media Sosial", url: "#", date: "2024-06-15" },
+    { title: "Persiapan Stadion dan Infrastruktur untuk Musim Baru", url: "#", date: "2024-06-20" },
+  ];
+
+  // Display navigated section and set active nav link
+  function showSection(sectionId, navLink) {
+    document.querySelectorAll('.page-section').forEach(sec => {
+      sec.classList.remove('active');
+      if (sec.id === sectionId) {
+        sec.classList.add('active');
+        sec.setAttribute('tabindex', '0');
+        sec.focus();
+      } else {
+        sec.removeAttribute('tabindex');
+      }
+    });
+
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.classList.remove('active');
+      a.removeAttribute('aria-current');
+    });
+
+    if(navLink){
+      navLink.classList.add('active');
+      navLink.setAttribute('aria-current', 'page');
+    }
+    
+    // Hide club details when leaving 'klub' section
+    if(sectionId !== 'klub') {
+      document.getElementById('club-details').hidden = true;
+      document.getElementById('club-details').innerHTML = '';
+    }
+  }
+
+  // Render league table in the klasemen section
+  const leagueData = [
+    { rank: 1, team: "Persib Bandung", p: 34, w: 19, d: 12, l: 3, gf: 60, ga: 33, gd: 0, pts: 0 },
+    { rank: 2, team: "Dewa United FC", p: 34, w: 17, d: 10, l: 7, gf: 65, ga: 33, gd: 0, pts: 0 },
+    { rank: 3, team: "Malut United FC", p: 34, w: 15, d: 12, l: 7, gf: 48, ga: 33, gd: 0, pts: 0 },
+    { rank: 4, team: "Persebaya Surabaya", p: 34, w: 15, d: 11, l: 8, gf: 41, ga: 0, gd: 0, pts: 0 },
+    { rank: 5, team: "Borneo FC", p: 34, w: 16, d: 8, l: 10, gf: 49, ga: 37, gd: 10, pts: 0 },
+    { rank: 6, team: "PSM Makassar", p: 34, w: 13, d: 14, l: 7, gf: 47, ga: 34, gd: 0, pts: 0 },
+    { rank: 7, team: "Persija Jakarta", p: 34, w: 14, d: 9, l: 11, gf: 47, ga: 38, gd: 0, pts: 0 },
+    { rank: 8, team: "Bali United FC", p: 34, w: 14, d: 8, l: 12, gf: 50, ga: 41, gd: 0, pts: 0 },
+    { rank: 9, team: "PSBS Biak", p: 34, w: 13, d: 9, l: 12, gf: 44, ga: 47, gd: 0, pts: 0},
+    { rank: 10, team: "Arema FC", p: 34, w: 13, d: 8, l: 13, gf: 53, ga: 51, gd: 0, pts: 0 },
+    { rank: 11, team: "Persita Tangerang", p: 34, w: 12, d: 7, l: 15, gf: 32, ga: 43, gd: 0, pts: 0 },
+    { rank: 12, team: "Persik Kediri", p: 34, w: 10, d: 11, l: 13, gf: 40, ga: 42, gd: 0, pts: 0 },
+    { rank: 13, team: "Persis Solo", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 14, team: "Semen Padang", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 15, team: "Madura United", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 16, team: "PSIM Yogyakarta", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 17, team: "Bhayangkara Presisi", p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 18, team: "Persijap", p: 0, w: 0, d: 0, l: 0, gf: 0, ga:0, gd: 0, pts: 0 },
+];
+
+  function generateLeagueTable() {
+    const tbody = document.getElementById("league-standings");
+    tbody.innerHTML = '';
+    leagueData.forEach(team => {
+      const highlightClass = (team.rank <= 3) ? 'highlight' : '';
+      const row = document.createElement("tr");
+      row.className = highlightClass;
+      row.innerHTML = `
+        <td>${team.rank}</td>
+        <td>${team.team}</td>
+        <td>${team.p}</td>
+        <td>${team.w}</td>
+        <td>${team.d}</td>
+        <td>${team.l}</td>
+        <td>${team.gf}</td>
+        <td>${team.ga}</td>
+        <td>${team.gd}</td>
+        <td>${team.pts}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  // Show club details when user clicks a club
+  function showClubDetails(clubName) {
+    const club = clubs[clubName];
+    const detailSection = document.getElementById("club-details");
+    if (!club) {
+      detailSection.innerHTML = "<p>Data klub tidak ditemukan.</p>";
+      detailSection.hidden = false;
+      detailSection.focus();
+      return;
+    }
+    // Compose HTML content
+    detailSection.innerHTML = `
+      <div class="club-profile" aria-label="Profil klub ${clubName}">
+        <img src="${club.logo}" alt="Logo ${clubName}" />
+        <div class="club-info">
+          <h2>${clubName}</h2>
+          <p class="description">${club.description}</p>
+          <div class="club-details-grid">
+            <section class="detail-box" aria-labelledby="history-title">
+              <h3 id="history-title">Sejarah</h3>
+              <ul>${club.history.map(item => `<li>${item}</li>`).join('')}</ul>
+            </section>
+            <section class="detail-box" aria-labelledby="players-title">
+              <h3 id="players-title">Pemain Kunci</h3>
+              <ul>${club.keyPlayers.map(player => `<li>${player}</li>`).join('')}</ul>
+            </section>
+            <section class="detail-box" aria-labelledby="achievements-title">
+              <h3 id="achievements-title">Prestasi</h3>
+              <ul>${club.achievements.map(item => `<li>${item}</li>`).join('')}</ul>
+            </section>
+            <section class="detail-box" aria-labelledby="competitions-title">
+              <h3 id="competitions-title">Kompetisi</h3>
+              <ul>${club.competitions.map(item => `<li>${item}</li>`).join('')}</ul>
+            </section>
+          </div>
+          <div class="schedule" aria-live="polite" style="margin-top:30px;">
+            <h2>Jadwal Pertandingan Mendatang</h2>
+            <ul>
+              ${club.nextMatches.map(match => `<li><strong>${match.date}:</strong> vs. ${match.opponent} (${match.venue})</li>`).join('')}
+            </ul>
+          </div>
+          <div class="news" style="margin-top:30px;">
+            <h2>Berita Terbaru</h2>
+            <ul>
+              ${club.news.map(n => `<li><a href="${n.url}" target="_blank" rel="noopener">${n.title}</a> <small>(${n.date})</small></li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      </div>
+    `;
+    detailSection.hidden = false;
+    detailSection.scrollIntoView({ behavior: 'smooth' });
+    detailSection.focus();
+  }
+
+  // Render general schedule list
+  function renderSchedule() {
+    const schedEl = document.getElementById('schedule');
+    schedEl.innerHTML = '';
+    generalSchedule.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.date}: ${item.home} vs. ${item.away} at ${item.venue}`;
+      schedEl.appendChild(li);
+    });
+  }
+
+  // Render news list
+  function renderNews() {
+    const newsEl = document.getElementById('news');
+    newsEl.innerHTML = '';
+    leagueNews.forEach(item => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title;
+      a.target = "_blank";
+      a.rel = "noopener";
+      const dateSpan = document.createElement('small');
+      dateSpan.textContent = ` (${item.date})`;
+      li.appendChild(a);
+      li.appendChild(dateSpan);
+      newsEl.appendChild(li);
+    });
+  }
+
+  // Init on load
+  document.addEventListener("DOMContentLoaded", () => {
+    generateLeagueTable();
+    renderSchedule();
+    renderNews();
+    showSection('beranda', document.querySelector('nav a.active'));
+  });
+</script>
+
+</body>
+</html>
